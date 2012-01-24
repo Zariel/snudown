@@ -300,8 +300,11 @@ sd_autolink__username(size_t *rewind_p, struct buf *link, uint8_t *data, size_t 
 	if (size < 1)
 		return 0;
 
-	/* make sure it starts with ~ */
-	if (data[0] != '~')
+	/*
+         * make sure it starts with ~
+         * And that it is not just a ~
+         * */
+	if (data[0] != '~' && size > 1)
 		return 0;
 
 	link_end = 1;
